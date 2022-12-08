@@ -51,7 +51,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/backend/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Verifica o projeto com Maven e Jacoco
       env:
