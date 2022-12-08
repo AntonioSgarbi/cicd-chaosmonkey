@@ -1,0 +1,17 @@
+maven-compile:
+  stage: build
+  script:
+    - mvn compile
+  allow_failure: false
+
+sonarqube-check:
+  stage: test
+  script:
+    - mvn verify sonar:sonar -Dsonar.projectKey=aplicacao-integrada-key
+  allow_failure: false
+
+docker-delivery:
+  stage: deploy
+  script:
+    - mvn package jib:build -DskipTets -DDOCKER_TOKEN=$DOCKER_TOKEN -DDOCKER_USERNAME=$DOCKER_USERNAME
+  allow_failure: false
